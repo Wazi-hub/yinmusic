@@ -1,0 +1,50 @@
+server:
+  port: 8888
+spring:
+  application:
+    name: getaway
+  cloud:
+    nacos:
+      discovery:
+       127.0.0.1:8848
+
+    gateway:
+      discovery:
+        locator:
+          enabled: false
+          lower-case-service-id: true
+      routes:
+        - id: admin
+          uri: lb://admin
+          predicates:
+            - Path=/admin/**
+
+        - id: collection
+          uri: lb://collection
+          predicates:
+            - Path=/collection/**
+        - id: consumer
+          uri: lb://consumer/**
+          predicates:
+            - Path=/user/**
+        - id: listsong
+          uri: lb:/listsong
+          predicates:
+            - Path=/ListSong/**,/Listsong/**,/listsong/**,/listSong/**
+        - id:  rank
+          uri: lb://rank
+          predicates:
+            - Path=/rank/**
+        - id: singer
+          uri: lb://singer
+          predicates:
+            - Path=/singer/**,/Singer/**
+        - id: song
+          uri: lb://song
+          predicates:
+            - Path=/song/**
+        - id: songlist
+          uri: lb://songlist
+          predicates:
+            - Path=/songList/**,/Songlist/**,/songlist/**,/Songlist/**
+
