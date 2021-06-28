@@ -42,7 +42,7 @@ spring:
         - id: song
           uri: lb://song
           predicates:
-            - Path=/song/**
+            - Path=/song/**,/Song/**
         - id: songlist
           uri: lb://songlist
           predicates:
